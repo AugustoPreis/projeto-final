@@ -1,7 +1,7 @@
-from pick import pick, __all__
+from pick import pick
+
 
 def menuInterativo(parametros):
-	#Cria menu interativo com os dados informados na chamada da função
 	opcoes = parametros
 	itens = [
 		'indexPadrao',
@@ -13,7 +13,6 @@ def menuInterativo(parametros):
 		'mapeador',
 	]
 
-	#Caso um parâmetro não seja informado, ele seta para "None" por padrão
 	for item in itens:
 		if(item not in opcoes):
 			opcoes[item] = None
@@ -27,5 +26,4 @@ def menuInterativo(parametros):
 		title = opcoes['titulo'] or 'Selecione uma opção',
 	)
 
-	#Retorna um dicionário com a opção selecionada, tal como seu index no array "opcoes"
 	return { 'opcao': opcao, 'index': index }
