@@ -1,3 +1,3 @@
-py main.py
+touch ./src/banco/manutencao.txt
 
-pause
+py main.py
