@@ -6,4 +6,4 @@ rodar os comandos para instalar as dependências do projeto:
 	pip install pick
 
 rodar o projeto:
-	py main.py
+	clicar 2 vezes sobre o arquivo "executar.bat", ou rodar na pasta raiz do projeto: "bash executar.bat"
