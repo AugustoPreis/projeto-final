@@ -76,12 +76,37 @@ def alteracao():
 	return
 
 def finalizar():
-	return
+  global id
+  cpf = input('Digite o CPF: ')
+  dados = repositorio.buscaPorCpf(cpf)
+  dados = list(filter(lambda item: item['status'] == 'M', dados))
+
+  if (len(dados) == 0):
+    return print('Nenhuma manutenção encontrada')
+  elif (len(dados) == 1):
+    id = dados[0]['id']
+
+    repositorio.finalizar(id - 1)
+  else:
+    opcoesMenu = {
+      'titulo': 'Selecione a manutenção desejada:',
+      'indicador': '>',
+      'opcoes': list(map(lambda item: (str(item['id']) + ' - ' + item['dataEntrada']), dados)),
+    }
+
+    item = menuInterativo(opcoesMenu)['index']
+
+    id = dados[item]['id']
+
+    repositorio.finalizar(id - 1)
+
+  print('Manutenção ' + str(id) + ' finalizada!')
 
 def realizar():
   global id
   cpf = input('Digite o CPF: ')
   dados = repositorio.buscaPorCpf(cpf)
+  dados = list(filter(lambda item: item['status'] != 'M', dados))
 
   if (len(dados) == 0):
     return print('Nenhuma manutenção encontrada')

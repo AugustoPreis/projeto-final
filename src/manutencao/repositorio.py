@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from src.banco import banco
 
 nomeArquivo = 'manutencao'
@@ -19,5 +21,12 @@ def realizar(index):
   itens = banco.selecionar(nomeArquivo)
 
   itens[index]['status'] = 'M'
+
+  banco.atualizar(itens, nomeArquivo)
+
+def finalizar(index):
+  itens = banco.selecionar(nomeArquivo)
+  
+  itens[index]['dataSaida'] = datetime.now().strftime('%d/%m/%y %H:%M')
 
   banco.atualizar(itens, nomeArquivo)
