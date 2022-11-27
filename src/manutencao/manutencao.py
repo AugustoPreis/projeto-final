@@ -1,4 +1,3 @@
-from src.banco import banco
 from src.manutencao import repositorio
 from utils.menuInterativo import menuInterativo
 
@@ -73,7 +72,41 @@ def solicitaDadosCadastro():
 	}
 
 def alteracao():
-	return
+  global id
+  cpf = input('Digite o CPF: ')
+  dados = repositorio.buscaPorCpf(cpf)
+
+  if (len(dados) == 0):
+    return print('Nenhuma manutenção encontrada')
+  elif (len(dados) == 1):
+    id = dados[0]['id']
+    item = solicitaDadosAlteracao(dados[0])
+
+    repositorio.alterar(item)
+  else:
+    opcoesMenu = {
+      'titulo': 'Selecione a manutenção desejada:',
+      'indicador': '>',
+      'opcoes': list(map(lambda item: (str(item['id']) + ' - ' + item['dataEntrada']), dados)),
+    }
+
+    item = menuInterativo(opcoesMenu)['index']
+
+    id = dados[item]['id']
+
+    dados[item] = solicitaDadosAlteracao(dados[item])
+
+    repositorio.alterar(dados[item])
+
+  print('Manutenção ' + str(id) + ' finalizada!')
+
+def solicitaDadosAlteracao(dados):
+  dados['detalhesOrcamento'] = input('Digite os detalhes do orcamento: ')
+  dados['valorOrcamento'] = input('Digite o valor do orçamento: ')
+  dados['descricaoServico'] = input('Digite a descrição do serviço: ')
+  dados['status'] = input('Digite o status da manutencao: ')
+
+  return dados
 
 def finalizar():
   global id

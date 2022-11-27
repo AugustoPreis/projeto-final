@@ -30,3 +30,11 @@ def finalizar(index):
   itens[index]['dataSaida'] = datetime.now().strftime('%d/%m/%y %H:%M')
 
   banco.atualizar(itens, nomeArquivo)
+
+def alterar(item):
+  dados = banco.selecionar(nomeArquivo)
+  index = int(item['id']) - 1
+
+  dados[index] = item
+
+  banco.atualizar(dados, nomeArquivo)
