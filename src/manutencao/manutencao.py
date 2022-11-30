@@ -99,6 +99,7 @@ def alteracao():
     repositorio.alterar(dados[item])
 
   print('Manutenção ' + str(id) + ' finalizada!')
+  input('\n\nAperte ENTER para continuar')
 
 def solicitaDadosAlteracao(dados):
   dados['detalhesOrcamento'] = input('Digite os detalhes do orcamento: ')
@@ -134,6 +135,7 @@ def finalizar():
     repositorio.finalizar(id - 1)
 
   print('Manutenção ' + str(id) + ' finalizada!')
+  input('\n\nAperte ENTER para continuar')
 
 def realizar():
   global id
@@ -161,3 +163,4 @@ def realizar():
     repositorio.realizar(id - 1)
 
   print('Manutenção ' + str(id) + ' iniciada!')
+  input('\n\nAperte ENTER para continuar')
