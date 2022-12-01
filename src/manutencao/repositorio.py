@@ -17,6 +17,12 @@ def buscaPorCpf(cpf):
 
   return list(filter(lambda item: item['cpf'] == cpf, dados))
 
+
+def buscaPorStatus(status):
+  dados = banco.selecionar(nomeArquivo)
+
+  return list(filter(lambda item: item['status'] == status, dados))
+
 def realizar(index):
   itens = banco.selecionar(nomeArquivo)
 
@@ -28,6 +34,7 @@ def finalizar(index):
   itens = banco.selecionar(nomeArquivo)
   
   itens[index]['dataSaida'] = datetime.now().strftime('%d/%m/%y %H:%M')
+  itens[index]['status'] = 'F'
 
   banco.atualizar(itens, nomeArquivo)
 

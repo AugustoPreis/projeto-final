@@ -13,7 +13,9 @@ def menu():
 			'Manutencões com status M',
 			'Manutencões com status C',
 			'Manutencões com status F',
-			'Sair',
+			'Manutenções por pessoa',
+			'Total Recebido',
+			'Voltar',
 		],
 	}
 
@@ -29,6 +31,10 @@ def menu():
 		relatorios.manutencoesPorStatus('C')
 	elif (index == 4):
 		relatorios.manutencoesPorStatus('F')
+	elif (index == 5):
+		relatorios.manutencoesPorPessoa()
+	elif (index == 6):
+		relatorios.totalRecebido()
 	else:
 		return
 	
